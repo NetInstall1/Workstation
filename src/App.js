@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+
+// src/app.js
+
+import React from 'react';
+import './App.css'; // Import your CSS file if needed
+import Table from './Components/Table'; // Import the Table component
+import Navbar from './Components/Navbar'; 
+// src/index.js or src/App.js
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Sidebar from './Components/Sidebar'; 
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Sidebar />
+      <Table /> {/* Render the Table component */}
     </div>
   );
 }
 
 export default App;
+

@@ -1,0 +1,32 @@
+/* Sidebar.css */
+#sidebar {
+    min-width: 150px;
+    max-width: 150px;
+    height: 100%;
+    position: fixed;
+    top: 56px; /* Adjust this value to match the height of your navbar */
+    left: 0;
+    overflow-y: auto;
+  }
+  
+  .sidebar-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 90px;
+    text-align: center;
+  }
+  
+  .sidebar-options {
+    padding: 0;
+  }
+  
+  .sidebar-option {
+    font-size: 18px;
+    margin-bottom: 40px;
+    cursor: pointer;
+  }
+  
+  .sidebar-option:hover {
+    text-decoration: underline;
+  }
+  
