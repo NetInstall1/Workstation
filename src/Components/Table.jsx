@@ -1,27 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import {BASE_URL} from '../config'
 import './Table.css';
 
-const Table = () => {
+const Table = ({hostData}) => {
   const [filter, setFilter] = useState(''); // State to store the filter text
-
+  const [tableData, setTableData] = useState([])
   // Dummy data for the table
-  const tableData = [
-    { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'Linux' },
-    { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-    { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-    { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-    { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-     { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-     { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-     { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-     { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-     { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-     { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-     { name: 'Data 1', friendlyName: 'Friendly 1', logIn: 'Login 1', deviceType: 'Device 1', siteName: 'Site 1', lastUser: 'User 1', os: 'OS 1' },
-    // Add more data as needed
-  ];
-
+  console.log("Tabel")
+  console.log(hostData)
+  
   // Function to handle filter input change
+
+
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
   };
@@ -33,6 +23,33 @@ const Table = () => {
     )
   );
 
+  // const fetchHostInfo = ()=>{
+  //   fetch(`${BASE_URL}/api/hostInfo`)
+  //   .then((res)=>{
+  //     res = res.json()
+  //     console.log(res)
+  //     // setTableData(res)
+  //   })
+  //   .catch((err)=>{
+  //     console.log(err)
+  //   })
+  // }
+  const fetchHostInfo = async()=>{
+
+    try{
+      var res = await fetch(`${BASE_URL}/api/hostInfo`)
+      res = await res.json()
+      console.log(res)
+      setTableData(res)
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(()=>{
+    fetchHostInfo()
+  },[])
   return (
     <div className="container">
       <div className="row">
@@ -57,25 +74,25 @@ const Table = () => {
             <table className="table mx-auto my-3">
               <thead>
                 <tr>
-                <th style={{ backgroundColor: '#f2f2f2' }} className="visible-column gray-bg">Name</th>
-               <th style={{ backgroundColor: '#f2f2f2' }}>Friendly Name</th>
-               <th style={{ backgroundColor: '#f2f2f2' }}>Log In</th>
-              <th>Device Type</th>
-             <th>Site Name</th>
-                <th>Last User</th>
-              <th>OS</th>
+                  <th style={{ backgroundColor: '#f2f2f2' }} className="visible-column gray-bg">Hostname</th>
+                  <th style={{ backgroundColor: '#f2f2f2' }}>IP address</th>
+                  <th style={{ backgroundColor: '#f2f2f2' }}>MAC addres</th>
+                  <th>Status</th>
+                  <th>Device Type</th>
+                  {/* <th>Site Name</th> */}
+                  {/* <th>Last User</th> */}
+                  <th>OS</th>
 
                 </tr>
               </thead>
               <tbody>
                 {filteredData.map((item, index) => (
                   <tr key={index}>
-                    <td className="visible-column">{item.name}</td>
-                    <td>{item.friendlyName}</td>
-                    <td>{item.logIn}</td>
-                    <td>{item.deviceType}</td>
-                    <td>{item.siteName}</td>
-                    <td>{item.lastUser}</td>
+                    <td className="visible-column">{item.hostname}</td>
+                    <td>{item.ip_address}</td>
+                    <td>{item.mac_address}</td>
+                    <td>{item.status}</td>
+                    <td>{item.device_type}</td>
                     <td>{item.os}</td>
                   </tr>
                 ))}

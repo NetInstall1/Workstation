@@ -21,8 +21,8 @@ const AppNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#">Chat</Nav.Link>
-            <Nav.Link href="#">Support</Nav.Link>
+            {/* <Nav.Link href="#">Chat</Nav.Link> */}
+            {/* <Nav.Link href="#">Support</Nav.Link> */}
           </Nav>
           <Nav className="ml-auto">
             <Nav.Link onClick={toggleProfileDropdown}>Profile</Nav.Link>
