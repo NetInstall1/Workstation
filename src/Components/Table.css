@@ -1,6 +1,6 @@
 /* Table.css */
 .table-container {
-    margin-top: 20px; /* Adjust the top margin as needed */
+    margin-top: 30px; /* Adjust the top margin as needed */
   }
   
   .visible-column {
@@ -11,7 +11,8 @@
   
   .table-filter {
     width: 40%; 
-    margin-left: 30px; /* Set the width to 60% of its container */
+    margin-left: 30px;
+    margin-top: 20px; /* Set the width to 60% of its container */
   }
 
   .table-container {
@@ -22,4 +23,8 @@
   .gray-bg {
     background-color: #4a4444; /* Grey color */
     color: #c1b3b3; /* Text color, adjust as needed */
+  }
+
+  .btn-filtered {
+    margin-left: 70px; /* Adjust the value as needed */
   }

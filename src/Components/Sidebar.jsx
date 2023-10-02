@@ -28,8 +28,8 @@ const Sidebar = ({onDataFetched}) => {
           <li className="sidebar-option" onClick={fetchHost}>Scan</li>
           <li className="sidebar-option">Deploy</li>
           <li className="sidebar-option">Analytics</li>
-          {/* <li className="sidebar-option">Option 4</li>
-          <li className="sidebar-option">Option 5</li>
+          <li className="sidebar-option">History</li>
+         { /*<li className="sidebar-option">Option 5</li>
           <li className="sidebar-option">Option 6</li>
           <li className="sidebar-option">Option 7</li> */}
           {/* Add more options as needed */}
