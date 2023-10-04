@@ -13,7 +13,7 @@ const Table = ({hostData}) => {
 
 
   const handleFilterChange = (e) => {
-    setFilter(e.target.value);
+    setFilter(e.target.value); 
   };
 
   // Filter the table data based on the filter text
