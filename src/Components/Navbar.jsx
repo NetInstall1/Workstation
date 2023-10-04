@@ -25,6 +25,7 @@ const AppNavbar = () => {
             {/* <Nav.Link href="#">Support</Nav.Link> */}
           </Nav>
           <Nav className="ml-auto">
+          <Nav.Link href="#">Chat</Nav.Link>
             <Nav.Link onClick={toggleProfileDropdown}>Profile</Nav.Link>
             {showProfileDropdown && (
               <NavDropdown title="User" id="basic-nav-dropdown">

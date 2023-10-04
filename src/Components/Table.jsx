@@ -60,7 +60,13 @@ const Table = ({hostData}) => {
           </div>
         </div>
         <div className="col-md-11">
-          <h2 className="mt-4">Workstations & Servers</h2>
+          <h2 className="mt-4" style={{ color: 'blue', textAlign: 'left' }}>Workstations & Servers</h2>
+          <h4 style={{ color: 'grey', display: 'inline-block', marginLeft: '60px' }}>Total   <b>0</b></h4>
+         <button className="btn btn-outline-primary btn-filtered" onClick={() => alert('Filtered')}>Filtered</button>
+<button className="btn btn-outline-primary btn-filtered" onClick={() => alert('Selected')}>
+  Selected
+</button>
+
           <div className="table-filter mt-4">
             <input
               type="text"
