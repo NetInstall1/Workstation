@@ -37,7 +37,7 @@ const Table = ({hostData}) => {
   const fetchHostInfo = async()=>{
 
     try{
-      var res = await fetch(`${BASE_URL}/api/hostInfo`)
+      var res = await fetch(`${BASE_URL}/api/guestInfo`)
       res = await res.json()
       console.log(res)
       setTableData(res)
@@ -60,7 +60,7 @@ const Table = ({hostData}) => {
           </div>
         </div>
         <div className="col-md-11">
-          <h2 className="mt-4" style={{ color: 'blue', textAlign: 'left' }}>Workstations & Servers</h2>
+          <h1 className="mt-4" style={{ color: '#132043', textAlign: 'left' }}>Workstations & Servers</h1>
           <h4 style={{ color: 'grey', display: 'inline-block', marginLeft: '60px' }}>Total   <b>0</b></h4>
          <button className="btn btn-outline-primary btn-filtered" onClick={() => alert('Filtered')}>Filtered</button>
 <button className="btn btn-outline-primary btn-filtered" onClick={() => alert('Selected')}>
@@ -84,10 +84,11 @@ const Table = ({hostData}) => {
                   <th style={{ backgroundColor: '#f2f2f2' }}>IP address</th>
                   <th style={{ backgroundColor: '#f2f2f2' }}>MAC addres</th>
                   <th>Status</th>
-                  <th>Device Type</th>
+                  {/* <th>Device Type</th> */}
                   {/* <th>Site Name</th> */}
                   {/* <th>Last User</th> */}
                   <th>OS</th>
+                  <th>Action</th>
 
                 </tr>
               </thead>
@@ -98,8 +99,9 @@ const Table = ({hostData}) => {
                     <td>{item.ip_address}</td>
                     <td>{item.mac_address}</td>
                     <td>{item.status}</td>
-                    <td>{item.device_type}</td>
+                    {/* <td>{item.device_type}</td> */}
                     <td>{item.os}</td>
+                    <td>{item.action}</td>
                   </tr>
                 ))}
               </tbody>

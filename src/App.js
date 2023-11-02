@@ -1,26 +1,29 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'; // Import your CSS file if needed
-import Table from './Components/Table'; // Import the Table component
-import Navbar from './Components/Navbar'; 
-// src/index.js or src/App.js
+import './styles/tailwind.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Sidebar from './Components/Sidebar'; 
+
 import { useState } from 'react';
+import Dashboard from './pages/Dashboard';
+import SignIn from './pages/SignIn';
+import CreateAgent from './pages/CreateAgent';
+
 
 function App() {
-  const [hostData, setHostData] = useState([])
-
-  const handleDataFetched = (data) => {
-    console.log("handleDataFetched")
-    console.log(data)
-    setHostData(data);
-  };
   return (
+    <BrowserRouter>
     <div className="App">
-      <Navbar />
-      <Sidebar onDataFetched={handleDataFetched} hostData={hostData}/>
-      <Table data={hostData}/> {/* Render the Table component */}
+      <Routes>
+        <Route path='/' element={<SignIn/>}></Route>
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
+        <Route path='/createAgent'element={<CreateAgent />}></Route>
+      </Routes>
     </div>
+    </BrowserRouter>
+    // <div>
+    //   <Dashboard/>
+    // </div>
   );
 }
 
