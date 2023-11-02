@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {BASE_URL} from '../config'
-import './Table.css';
+import '../styles/Table.css'
 
 const Table = ({hostData}) => {
   const [filter, setFilter] = useState(''); // State to store the filter text
@@ -37,7 +37,7 @@ const Table = ({hostData}) => {
   const fetchHostInfo = async()=>{
 
     try{
-      var res = await fetch(`${BASE_URL}/api/guestInfo`)
+      var res = await fetch(`${BASE_URL}/guestInfo`)
       res = await res.json()
       console.log(res)
       setTableData(res)

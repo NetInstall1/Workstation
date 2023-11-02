@@ -2,12 +2,20 @@ import React, { useState } from "react";
 import { BASE_URL } from "../config";
 import { Form, Button, Container, InputGroup } from 'react-bootstrap';
 import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
+import DownloadAgent from "../Components/DownloadAgent";
 
 const CreateAgent = () => {
     const [guest_user, setGuest_user] = useState('')
     const [guest_pass, setGuest_pass] = useState('')
     const [ip_range, setIp_range] = useState('')
     const [showPass, setShowPass] = useState(false)
+    const [Agent_id, setAgent_id] = useState('')
+    const [agent_name, setAgent_name] = useState('')
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [showDownload, setShowDownload] = useState(false);
+    const handleCloseDownload = () => showDownload(false);
+    const handleShowDownlaod = () => showDownload(true);
+
 
     const handleGuest_userChange = (e) => {
         setGuest_user(e.target.value)
@@ -21,20 +29,45 @@ const CreateAgent = () => {
         setIp_range(e.target.value)
     }
 
-    const handleSubmit = () => {
-        fetch(`${BASE_URL}/create-agent`,
-            {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ guest_user, guest_pass, ip_range })
-            })
+    const handleAgent_nameChange = (e) => {
+        setAgent_name(e.target.value)
+    }
+
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        try {
+            var res = await fetch(`${BASE_URL}/create-agent`,
+                {
+                    method: "post",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ guest_user, guest_pass, ip_range, agent_name })
+                })
+            res = await res.json()
+            console.log(res.agent._id)
+            setAgent_id(res.agent._id)
+            setShowDownload(!showDownload)
+            setFormSubmitted(!formSubmitted)
+        } catch (err) {
+            console.log(`Error occurred while creating Agent: ${err}`)
+        }
+
     }
     return (
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
-            <Form onSubmit={handleSubmit}>
+            <Form className="shadow p-4 rounded" onSubmit={handleSubmit}>
             <h3 className="mb-5">Create Agent</h3>
+                <Form.Group className="mb-3">
+                    <Form.Control
+                        type="text"
+                        value={agent_name}
+                        onChange={handleAgent_nameChange}
+                        placeholder="Enter Agent Name">
+
+                    </Form.Control>
+
+                </Form.Group>
                 <Form.Group className="mb-3">
                     {/* <Form.Label>Guest User</Form.Label> */}
                     <Form.Control
@@ -67,9 +100,13 @@ const CreateAgent = () => {
                         placeholder="Enter IP range"
                     />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
                     Submit
                 </Button>
+                {console.log(`${formSubmitted} and ${Agent_id}`)}
+                {formSubmitted && Agent_id && (
+                    <DownloadAgent Agent_id={Agent_id} handleClose={handleCloseDownload} show={showDownload}/>
+                )}
             </Form>
         </Container>
     )

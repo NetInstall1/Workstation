@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import './Sidebar.css';
+import '../styles/Sidebar.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { BASE_URL } from '../config';
 import io from 'socket.io-client';
@@ -16,7 +16,7 @@ const Sidebar = ({onDataFetched, openUploadModal}) => {
   const fetchHost = async()=>{
     console.log("In fetchhost function")
     try{
-      var response = await fetch(`${BASE_URL}/api/scan`)
+      var response = await fetch(`${BASE_URL}/scan`)
       response = await response.json()
       console.log(response)
       setHostData(response)

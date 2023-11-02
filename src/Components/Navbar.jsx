@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import logo from '../images/logo.png';
+import '../styles/Navbar.css'
 
 const AppNavbar = () => {
   // State to control the visibility of the profile dropdown

@@ -13,6 +13,7 @@ import Button from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import UploadModal from '../Components/UploadModal';
+import AgentList from '../Components/AgentList';
 
 function Dashboard() {
     const [isUploadModalOpen, setUploadModal] = useState(false)
@@ -50,6 +51,7 @@ function Dashboard() {
     return (
         <div className="Dashboard">
             <Navbar />
+            <AgentList/>
             <Sidebar onDataFetched={handleDataFetched} hostData={hostData} openUploadModal={openUploadModal} />
             <UploadModal
                 show={isUploadModalOpen}
