@@ -1,47 +1,33 @@
 /* Sidebar.css */
-
 #sidebar {
   min-width: 150px;
-  max-width: 250px;
-  margin-top: 40px;
-  height: 90%;
+  max-width: 150px;
+  height: 100%;
   position: fixed;
-  top: 56px; /* Adjust this value to match the height of your navbar */
+  top: 60px; /* Adjust this value to match the height of your navbar */
   left: 0;
   overflow-y: auto;
-  background-color: #e1dede !important; /* Light gray background color */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for aesthetics */
-}
-
-.sidebar-header {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px; /* Reduced margin for better header appearance */
-  text-align: center;
-}
-
-.sidebar-options {
-  padding: 0;
 }
 
 .sidebar-option {
-  display: block;
-  width: 100%;
-  padding: 10px 20px; /* Adjust the padding to your preference */
-  font-size: 18px;
-  margin-bottom: 60px; /* Reduced margin for better button appearance */
+  font-size: 19px;
+  margin-top: 28px;
   cursor: pointer;
-  text-align: left;
-  background-color: #265c96; /* Button background color */
-  color: #fff; /* Button text color */
-  border: none; /* Remove borders */
-  border-radius: 5px; /* Add rounded corners */
-  text-decoration: none; /* Remove underlines */
-  text-align: center;
-  transition: background-color 0.3s ease-in-out; /* Smooth hover transition */
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: inherit;
 }
 
 .sidebar-option:hover {
-  background-color: #0056b3; /* Darker background color on hover */
-  text-decoration: none;
+  text-decoration: underline;
+  color: rgb(37, 186, 227);
 }
+
+
+.sidebar-option a {
+  color: black; /* Set the link text color to black */
+  text-decoration: none; /* Remove the underline on the link (optional) */
+}
+
+.sidebar-option a:hover {
+  color: rgb(37, 186, 227);/* Set the link color to blue when hovered */
+  }

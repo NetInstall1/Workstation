@@ -3,8 +3,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
-import logo from '../images/logo.png';
-import '../styles/Navbar.css'
+import '../styles/Navbar.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 const AppNavbar = () => {
   // State to control the visibility of the profile dropdown
@@ -16,38 +16,42 @@ const AppNavbar = () => {
   };
 
   return (
-    <Navbar bg="light" expand="lg" className="border-bottom border-primary">
-      <Container>
+    <Navbar bg="light" expand="lg">
+      <Container fluid>
         <Navbar.Brand href="#">
           <img
-            src={logo} // Use the imported logo
-            alt="Logo"
-            width="70" // Adjust the width as needed
-            height="40" // Adjust the height as needed
+            src= "https://netinstall.nl/wp-content/uploads/2022/10/Logo-netinstall-2022.png" // Use the imported logo
+            width="165"
             className="d-inline-block align-top"
+            alt="Logo"
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            {/* <Nav.Link href="#">Chat</Nav.Link> */}
-            {/* <Nav.Link href="#">Support</Nav.Link> */}
-          </Nav>
-          <Nav className="ml-auto">
-            <Nav.Link href="#">Chat</Nav.Link>
-            <Nav.Link onClick={toggleProfileDropdown}>Profile</Nav.Link>
-            {showProfileDropdown && (
-              <NavDropdown title="User" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#">My Profile</NavDropdown.Item>
-                <NavDropdown.Item href="#">Settings</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#">Logout</NavDropdown.Item>
-              </NavDropdown>
-            )}
-            <Nav.Link href="#">Resources</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
+        <Nav className="ml-auto">
+        <Nav.Link className="nav-link">
+     <i className="fa fa-comments"></i> Chat
+       </Nav.Link>
+           <Nav.Link className="nav-link" onClick={toggleProfileDropdown}>
+           <i className="fa fa-user"></i> Profile
+                  </Nav.Link>
+                          {showProfileDropdown && (
+             <NavDropdown title="User" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#">
+        <i className="fas fa-user"></i> My Profile
+          </NavDropdown.Item>
+           <NavDropdown.Item href="#">
+           <i className="fas fa-wrench"></i> Settings
+          </NavDropdown.Item>
+    <NavDropdown.Divider />
+    <NavDropdown.Item href="#">
+      <i className="fa fa-sign-out-alt"></i> Logout
+    </NavDropdown.Item>
+  </NavDropdown>
+  )}
+  <Nav.Link className="nav-link">
+  <i className="fa fa-sign-out"></i> Disconnect
+</Nav.Link>
+  </Nav>
+    </Container>
     </Navbar>
   );
 };

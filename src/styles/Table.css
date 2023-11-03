@@ -6,7 +6,7 @@
   .visible-column {
     margin-left: 10px; /* Left margin of 20px */
     margin-right: 10px;/* Adjust the right margin as needed */
-    border-left: 3px solid #a6a8ac; /* Adjust the border color and width as needed */
+    border-left: 8px solid #a6a8ac; /* Adjust the border color and width as needed */
   }
   
   .table-filter {
@@ -17,7 +17,7 @@
 
   .table-container {
     margin-left: 0px;
-    margin-right: 20px;
+    margin-right: 10px;
   }
 
   .gray-bg {
@@ -28,3 +28,33 @@
   .btn-filtered {
     margin-left: 70px; /* Adjust the value as needed */
   }
+
+  .table th {
+    font-size: 20px; /* You can adjust the font size as needed */
+  }
+  
+  h2 {
+    color: #01040c;
+    text-align: left;
+    transition: color 0.3s; /* Add a smooth color transition on hover */
+  }
+  
+  h2:hover {
+    color: rgb(37, 186, 227); /* Change the color on hover */
+  }
+  
+  .header-with-icon {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    margin-right: 5px; /* Add some spacing between the icon and text */
+    font-size: 18px; /* Adjust the font size of the icon */
+  }
+  
+  .table th:hover {
+  color: rgb(37, 186, 227);/* Change the background color on hover */
+  cursor: pointer; 
+}
+
