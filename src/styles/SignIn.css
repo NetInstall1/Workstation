@@ -27,7 +27,11 @@
     border-radius: 9px;
 }
 .signin-input{
-    margin-top: 55px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 85px;
+    padding-left: 20px;
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -35,17 +39,26 @@
 .signin-input{
     display: flex;
     align-items: center;
-    margin: auto;
     width: 400px;
-    height: 80px;
+    height: 60px;
     background: #eaeaea;
     border-radius: 6px;
 }
-.signin-input img{
-    margin: 0px,30px;
+
+.signin-submitform{ 
+    padding: 30px 88px; 
+    cursor: pointer; 
 }
 
-.signin-input signin-input{
+.signin-sform{
+    font-size: 18px;
+    background-color: blue;
+    border-radius: 5px; 
+    padding: 10px 15px;
+}
+
+
+.signin-input input{
     height: 50px;
     width: 400px;
     background: transparent;

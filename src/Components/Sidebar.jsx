@@ -43,10 +43,10 @@ const Sidebar = ({onDataFetched, openUploadModal}) => {
         <ul className="list-unstyled components">
           <li className="sidebar-option" onClick={fetchHost}>Scan</li>
           <li className="sidebar-option">Deploy</li>
-          <li className="sidebar-option">Analytics</li>
-          <li className="sidebar-option">Inventory</li>
+          {/* <li className="sidebar-option">Analytics</li>
+          <li className="sidebar-option">Inventory</li> */}
           <li className='sidebar-option' onClick={openUploadModal}>Upload</li>
-          <li className="sidebar-option">History</li>
+          {/* <li className="sidebar-option">History</li> */}
          
          { /* <li className="sidebar-option">Option 6</li>
           <li className="sidebar-option">Option 7</li> */}

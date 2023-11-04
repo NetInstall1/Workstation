@@ -2,7 +2,11 @@ import React from 'react'
 import '../styles/SignIn.css'
 import { useState } from 'react';
 import { BASE_URL } from '../config';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 // import user_icon from 'login-signup/src/components/assestss/email.png'
 // import email_icon from 'login-signup/src/components/assestss/email.png' 
 // import password_icon from 'login-signup/src/components/assestss/email.png'
@@ -24,53 +28,84 @@ const SignIn = () => {
     setUserPass(e.target.value)
   }
 
-  const handleSigninSubmit=()=>{
-    fetch(`${BASE_URL}/user`,{
-      method:"post",
-      headers:{
-        "Content-Type":"application/json",
+  const handleSigninSubmit = () => {
+    const endpoint = action === 'Sign In' ? '/authenticate' : '/create-user';
+  
+    fetch(`${BASE_URL}${endpoint}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({user_email: user_email, user_pass: user_pass})
-    }).then((res)=>{
-      console.log(res.json())
-      navigate("/dashboard")
-    }).catch((err)=>{
-      console.log(err)
+      body: JSON.stringify({ user_email: user_email, user_pass: user_pass }),
     })
-  }
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error('Authentication failed');
+        }
+      })
+      .then((data) => {
+        console.log(data.message);
+
+        toast.success("Authentication successful", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+
+        navigate("/dashboard");
+  
+      })
+      .catch((err) => {
+        console.log(err);
+  
+        // Show an error toast notification
+        
+        toast.error("Authentication failed. Please try again.", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      });
+  };
+  
+
   return (
-    <><div className='signin-container'>
-      <div className="signin-header">
-        <div className="signin-text">{action} </div>
-        <div className="signin-underline"></div>
-      </div>
+    <div>
+      <ToastContainer />
+      <div className='signin-container'>
+        <div className="signin-header">
+          <div className="signin-text">{action} </div>
+          <div className="signin-underline"></div>
+        </div>
 
-      <div className="signin-input">
-        {/* <img src={email_icon} alt="" />  */}
-        <input
-          placeholder="Email Id"
-          type="text"
-          onChange={handleEmail}
-        />
-      </div>
+        <div className="signin-input">
+          {/* <img src={email_icon} alt="" />  */}
+          <input
+            placeholder="Email Id"
+            type="email"
+            onChange={handleEmail}
+          />
+        </div>
 
-      <div className="signin-input">
-        {/* <img src={password_icon} alt="" />  */}
-        <input
-          placeholder="Password"
-          type="text"
-          onChange={handlePass}
-        />
-      </div>
-{/* 
-      <div
-        className= "signin-submit"
-        onClick={() => { setAction("Sign Up") }}
-      >Submit
-      </div> */}
+        <div className="signin-input">
+          {/* <img src={password_icon} alt="" />  */}
+          <input
+            
+            placeholder="Password"
+            type="password"
+            onChange={handlePass}
+          />
+        </div>
+
+        <div className='signin-submitform'>
+          <button
+            className='signin-sform'
+            type="submit"
+            onClick={handleSigninSubmit}>
+            Submit
+          </button>
+        </div>
 
 
-    </div><div className="signin-submit-container">
+      </div><div className="signin-submit-container">
         <div
           className={action === "Sign In" ? "signin-submit signin-gray" : "signin-submit"}
           onClick={() => { setAction("Sign Up") }}
@@ -82,7 +117,7 @@ const SignIn = () => {
           onClick={() => { setAction("Sign In") }}
         >Sign In
         </div>
-      </div></>
+      </div></div>
   );
 };
 
