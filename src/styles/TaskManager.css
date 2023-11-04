@@ -1,0 +1,83 @@
+/* TaskManager.css */
+
+.task-manager {
+  text-align: center;
+  margin: 20px auto;
+  width: 82%;
+}
+
+h2 {
+  font-size: 27px;
+  margin-bottom: 20px;
+}
+
+.performance-predictor {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.performance-prediction {
+  flex: 1;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Add padding between RAM and CPU usage boxes */
+.performance-prediction + .performance-prediction {
+  margin-left: 20px;
+}
+
+.progress-bar {
+  background-color: #e0e0e0;
+  height: 20px;
+  border: 1px solid #ccc;
+}
+
+.usage {
+  background-color: #3498db;
+  height: 100%;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+  font-size: 17px;
+}
+
+.process-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.process-table th, .process-table td {
+  border: none; /* Remove border from the table */
+  padding: 8px;
+}
+
+.process-table th {
+  background-color: #f2f2f2;
+}
+
+.process-icon {
+  width: 20px; /* Adjust the width as per your preference */
+  height: 20px; /* Adjust the height as per your preference */
+}
+.process-table {
+  text-align: center;
+}
+
+.process-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Adjust the gap as needed to control the spacing between the icon and name */
+}
+
+.process-name {
+  font-weight: inherit;
+}
+
+
+/* Add additional styling as needed */

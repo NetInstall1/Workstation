@@ -60,12 +60,12 @@ const Table = ({hostData}) => {
           </div>
         </div>
         <div className="col-md-11">
-          <h1 className="mt-4" style={{ color: '#132043', textAlign: 'left' }}>Workstations & Servers</h1>
-          <h4 style={{ color: 'grey', display: 'inline-block', marginLeft: '60px' }}>Total   <b>0</b></h4>
+        <h2 className="mt-4 custom-h1">Workstations & Servers</h2>
+        <h4 style={{ color: 'grey', display: 'inline-block', marginLeft: '60px' }}>Total  <b>10</b></h4>
          <button className="btn btn-outline-primary btn-filtered" onClick={() => alert('Filtered')}>Filtered</button>
-<button className="btn btn-outline-primary btn-filtered" onClick={() => alert('Selected')}>
-  Selected
-</button>
+        <button className="btn btn-outline-primary btn-filtered" onClick={() => alert('Selected')}>
+                       Selected
+               </button>
 
           <div className="table-filter mt-4">
             <input
@@ -80,15 +80,36 @@ const Table = ({hostData}) => {
             <table className="table mx-auto my-3">
               <thead>
                 <tr>
-                  <th style={{ backgroundColor: '#f2f2f2' }} className="visible-column gray-bg">Hostname</th>
-                  <th style={{ backgroundColor: '#f2f2f2' }}>IP address</th>
-                  <th style={{ backgroundColor: '#f2f2f2' }}>MAC addres</th>
-                  <th>Status</th>
-                  {/* <th>Device Type</th> */}
-                  {/* <th>Site Name</th> */}
-                  {/* <th>Last User</th> */}
-                  <th>OS</th>
-                  <th>Action</th>
+      <th style={{ backgroundColor: '#f2f2f2' }} className="visible-column gray-bg">
+       <div class="header-with-icon">
+       <i class="fa fa-home icon"></i> Hostname
+       </div>
+    </th>
+    <th style={{ backgroundColor: '#f2f2f2' }}>
+  <div class="header-with-icon">
+    <i class=" fa fa-network-wired icon"></i> IP address
+  </div>
+    </th>
+    <th style={{ backgroundColor: '#f2f2f2' }}>
+      <div class="header-with-icon">
+    <i class="fa fa-id-card icon"></i> MAC address
+  </div>
+   </th> 
+    <th>
+  <div class="header-with-icon">
+    <i class="fa fa-check-circle icon"></i> Status
+          </div>  
+        </th>
+       <th>
+  <div class="header-with-icon">
+    <i class="fa fa-laptop icon"></i> OS
+            </div>
+        </th>
+       <th>
+           <div class="header-with-icon">
+        <i class="fa fa-cogs icon"></i> Action
+      </div>
+     </th>
 
                 </tr>
               </thead>
@@ -110,6 +131,7 @@ const Table = ({hostData}) => {
         </div>
       </div>
     </div>
+    
   );
 };
 
