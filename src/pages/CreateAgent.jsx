@@ -3,6 +3,7 @@ import { BASE_URL } from "../config";
 import { Form, Button, Container, InputGroup } from 'react-bootstrap';
 import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
 import DownloadAgent from "../Components/DownloadAgent";
+import Sidebar from "../Components/Sidebar";
 
 const CreateAgent = () => {
     const [guest_user, setGuest_user] = useState('')
@@ -55,6 +56,8 @@ const CreateAgent = () => {
 
     }
     return (
+        <>
+        <Sidebar/>
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
             <Form className="shadow p-4 rounded" onSubmit={handleSubmit}>
             <h3 className="mb-5">Create Agent</h3>
@@ -109,6 +112,7 @@ const CreateAgent = () => {
                 )}
             </Form>
         </Container>
+        </>
     )
 }
 

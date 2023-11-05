@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../Components/Navbar'; // Import the Navbar component
-import Sidebar from '../Components/Sidebar';// Import the Sidebar component 
+import Navbar from '../Components/Navbar';
+import GuestSidebar from '../Components/GuestSidebar';
 import Task from '../Components/Task'
 const TaskManagerPage = () => {
   return (
@@ -9,7 +9,7 @@ const TaskManagerPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-3">
-            <Sidebar />
+            <GuestSidebar />
           </div>
           <div className="col-md-12">
             {/* Include the TaskManager component */}

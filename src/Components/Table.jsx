@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {BASE_URL} from '../config'
 import '../styles/Table.css'
+import { useNavigate } from 'react-router';
 
 const Table = ({hostData}) => {
+
+  const navigate = useNavigate()
   const [filter, setFilter] = useState(''); // State to store the filter text
   const [tableData, setTableData] = useState([])
   // Dummy data for the table
@@ -113,7 +116,7 @@ const Table = ({hostData}) => {
 
                 </tr>
               </thead>
-              <tbody>
+              <tbody onClick={()=>{navigate('/guestDashboard')}}>
                 {filteredData.map((item, index) => (
                   <tr key={index}>
                     <td className="visible-column">{item.hostname}</td>

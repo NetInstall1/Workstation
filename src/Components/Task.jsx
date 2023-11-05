@@ -28,12 +28,12 @@ const TaskManager = () => {
   }, []);
 
 
-  // Simulate CPU and RAM performance prediction
+  // Simulate CPU and RAM performance 
   useEffect(() => {
-    // Simulate CPU and RAM usage prediction based on trends (sample data)
+    // Simulate CPU and RAM usage  based on trends (sample data)
     const updatePerformancePrediction = () => {
-      const newCpuUsage = Math.min(cpuUsage + Math.random() * 20, 100);
-      const newRamUsage = Math.min(ramUsage + Math.random() * 30, 100);
+      const newCpuUsage = Math.min(cpuUsage + Math.random() * 10, 100);
+      const newRamUsage = Math.min(ramUsage + Math.random() * 15, 100);
       setCpuUsage(newCpuUsage);
       setRamUsage(newRamUsage);
     };
@@ -49,7 +49,7 @@ const TaskManager = () => {
       <h2>Task Manager</h2>
       <div className="performance-predictor">
         <div className="performance-prediction">
-          <h3>CPU Usage Prediction</h3>
+          <h3>CPU Usage</h3>
           <div className="progress-bar">
             <div className="usage" style={{ width: `${cpuUsage}%` }}>
               {cpuUsage.toFixed(2)}%
@@ -57,7 +57,7 @@ const TaskManager = () => {
           </div>
         </div>
         <div className="performance-prediction">
-          <h3>RAM Usage Prediction</h3>
+          <h3>RAM Usage</h3>
           <div className="progress-bar">
             <div className="usage" style={{ width: `${ramUsage}%` }}>
               {ramUsage.toFixed(2)}%

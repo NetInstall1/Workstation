@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard';
 import SignIn from './pages/SignIn';
 import CreateAgent from './pages/CreateAgent';
 import TaskManager from './pages/TaskManager';
+import GuestDashboard from './pages/GuestDashboard';
+import SystemInfo from './pages/SystemInfo';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>}></Route>
         <Route path='/createAgent'element={<CreateAgent />}></Route>
         <Route path='/taskmanager' element={<TaskManager/>}></Route>
+        <Route path='/guestDashboard' element={<GuestDashboard/>}></Route>
+        <Route path='/sysinfo'element={<SystemInfo />}></Route>
       </Routes>
     </div>
     </BrowserRouter>

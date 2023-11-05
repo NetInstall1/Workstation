@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import '../styles/Sidebar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 import { BASE_URL } from '../config';
 import io from 'socket.io-client';
 import UploadFile from './UploadModal';
-import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ onDataFetched, openUploadModal }) => {
 
@@ -39,26 +38,35 @@ const Sidebar = ({ onDataFetched, openUploadModal }) => {
                     </div>
                     </h4> 
         <ul className="list-unstyled components">
-        <li className="sidebar-option" onClick={fetchHost}>
-            <Link> 
-              <i className="fa fa-tasks"></i>Scan
+        <li className="sidebar-option">
+            <Link to="/dashboard"> 
+            <i class="fa-solid fa-house"></i> Dashboard
             </Link>
           </li>
-          <li className="sidebar-option">
-            <i className="fa fa-laptop"></i>Deploy
+        <li className="sidebar-option">
+            <Link to="/taskmanager"> 
+              <i className="fa fa-tasks"></i> Task Manager
+            </Link>
+          </li>
+          <li className="sidebar-option" onClick={()=>{navigate('/sysinfo')}}>
+            <i className="fa fa-laptop"></i> System Information
           </li>
           {/* <li className="sidebar-option">
             <i className="fa fa-camera"></i> Camera
-          </li>
+          </li> */}
           <li className="sidebar-option">
             <i className="fa fa-hdd-o"></i> Filesystem
-          </li> */}
-          <li className='sidebar-option' onClick={openUploadModal}>
+          </li>
+          {/* <li className='sidebar-option' onClick={openUploadModal}>
             <i className="fa fa-upload"></i> Upload
+          </li> */}
+          <li className="sidebar-option">
+            <i className="fa fa-terminal"></i> Terminal
           </li>
-          <li className='sidebar-option' onClick={()=>{navigate('/createAgent')}}>
-          <i class="fa-solid fa-plus"></i> Create Agent
-          </li>
+         
+         { /* <li className="sidebar-option">Option 6</li>
+          <li className="sidebar-option">Option 7</li> */}
+          {/* Add more options as needed */}
         </ul>
       </div>
     </nav>
