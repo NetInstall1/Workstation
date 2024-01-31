@@ -4,7 +4,6 @@ import '../styles/Sidebar.css';
 import { Link } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 import { BASE_URL } from '../config';
-import io from 'socket.io-client';
 import UploadFile from './UploadModal';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +12,11 @@ const Sidebar = ({ onDataFetched, openUploadModal }) => {
   const navigate = useNavigate()
   const [hostData, setHostData] = useState([]);
   const [uploadModal, setUploadModal] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen); // Toggle the state to open/close the sidebar
+  };
 
   const fetchHost = async () => {
     console.log("In fetchhost function");
@@ -28,14 +32,19 @@ const Sidebar = ({ onDataFetched, openUploadModal }) => {
   }
 
   return (
-    <nav id="sidebar" className="bg-light">
-      <div className="p-4">
+    <>
+    {/* Hamburger Menu Icon */}
+    <div className="hamburger-menu" onClick={toggleSidebar}>
+      <i className={`fa fa-${isSidebarOpen ? 'times' : 'bars'}`}></i>
+    </div>
+    <nav id="sidebar" className={`bg-light ${isSidebarOpen ? 'open' : ''}`}>   
+       <div className="sidecss">
         <h4 className="text-center">
         <div style={{ textAlign: 'center', marginBottom: '85px' }}>
          <div style={{ border: '2px solid grey', borderRadius: '50%', width: '70px', height: '70px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'grey' }}>
     <i className="fa fa-user" style={{ fontSize: '40px', color: 'black' }}></i>
                  </div>
-           <p style={{ margin: '0', fontSize: '16px', textAlign: 'center' }}>XGE,102</p>
+           <p style={{ margin: '15px', fontSize: '20px', textAlign: 'center' }}>XGE,102</p>
                     </div>
                     </h4> 
         <ul className="list-unstyled components">
@@ -62,6 +71,7 @@ const Sidebar = ({ onDataFetched, openUploadModal }) => {
         </ul>
       </div>
     </nav>
+    </>
   );
 };
 

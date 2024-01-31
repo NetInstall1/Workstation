@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -9,10 +10,20 @@ import 'font-awesome/css/font-awesome.min.css';
 const AppNavbar = () => {
   // State to control the visibility of the profile dropdown
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const navigate = useNavigate(); // Hook for navigation
 
+  
   // Function to toggle the profile dropdown
   const toggleProfileDropdown = () => {
     setShowProfileDropdown(!showProfileDropdown);
+  };
+  
+  const handleLogout = () => {
+    // Clear the token from local storage
+    localStorage.removeItem('token');
+
+    // Redirect to the sign-in page
+    navigate('/');
   };
 
   return (
@@ -42,7 +53,7 @@ const AppNavbar = () => {
            <i className="fas fa-wrench"></i> Settings
           </NavDropdown.Item>
     <NavDropdown.Divider />
-    <NavDropdown.Item href="#">
+      <NavDropdown.Item onClick={handleLogout}>
       <i className="fa fa-sign-out-alt"></i> Logout
     </NavDropdown.Item>
   </NavDropdown>
