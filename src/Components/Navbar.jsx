@@ -5,8 +5,11 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import '../styles/Navbar.css';
 import 'font-awesome/css/font-awesome.min.css';
+import userEvent from '@testing-library/user-event';
+import { useNavigate } from "react-router-dom";
 
-const AppNavbar = () => {
+const AppNavbar = (user) => {
+  const navigate = useNavigate()
   // State to control the visibility of the profile dropdown
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
@@ -14,6 +17,12 @@ const AppNavbar = () => {
   const toggleProfileDropdown = () => {
     setShowProfileDropdown(!showProfileDropdown);
   };
+
+  const handleLogout = ()=>{
+    localStorage.clear();
+    navigate('/')
+
+  }
 
   return (
     <Navbar bg="light" expand="lg">
@@ -29,26 +38,12 @@ const AppNavbar = () => {
         <Nav className="ml-auto">
         <Nav.Link className="nav-link">
      <i className="fa fa-comments"></i> Chat
-       </Nav.Link>
-           <Nav.Link className="nav-link" onClick={toggleProfileDropdown}>
-           <i className="fa fa-user"></i> Profile
-                  </Nav.Link>
-                          {showProfileDropdown && (
-             <NavDropdown title="User" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#">
-        <i className="fas fa-user"></i> My Profile
-          </NavDropdown.Item>
-           <NavDropdown.Item href="#">
-           <i className="fas fa-wrench"></i> Settings
-          </NavDropdown.Item>
-    <NavDropdown.Divider />
-    <NavDropdown.Item href="#">
-      <i className="fa fa-sign-out-alt"></i> Logout
-    </NavDropdown.Item>
-  </NavDropdown>
-  )}
-  <Nav.Link className="nav-link">
-  <i className="fa fa-sign-out"></i> Disconnect
+          </Nav.Link>
+          <Nav.Link className="nav-link" onClick={toggleProfileDropdown}>
+            <i className="fa fa-user"></i> {user?.user_name}
+          </Nav.Link>
+  <Nav.Link className="nav-link" onClick={handleLogout}>
+  <i className="fa fa-sign-out"></i> Logout
 </Nav.Link>
   </Nav>
     </Container>

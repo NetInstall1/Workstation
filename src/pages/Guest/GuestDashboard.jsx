@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from '../Components/Navbar';
-import GuestSidebar from '../Components/GuestSidebar';
+import Navbar from '../../Components/Navbar';
+import GuestSidebar from '../../Components/GuestSidebar';
 const GuestDashboard=()=>{
     return(
         <div>

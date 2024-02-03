@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import SystemInfoCard from '../Components/SystemInfoCard';
-import Navbar from '../Components/Navbar'; 
-import '../styles/Navbar.css';
-import GuestSidebar from '../Components/GuestSidebar'
+import SystemInfoCard from '../../Components/SystemInfoCard';
+import Navbar from '../../Components/Navbar'; 
+import '../../styles/Navbar.css';
+import GuestSidebar from '../../Components/GuestSidebar'
 import {
   faDesktop,
   faNetworkWired,

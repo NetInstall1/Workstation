@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from '../Components/Navbar';
-import GuestSidebar from '../Components/GuestSidebar';
-import Task from '../Components/Task'
+import Navbar from '../../Components/Navbar';
+import GuestSidebar from '../../Components/GuestSidebar';
+import Task from '../../Components/Task'
 const TaskManagerPage = () => {
   return (
     <div className="task-manager-page">

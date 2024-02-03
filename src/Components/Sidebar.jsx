@@ -17,7 +17,7 @@ const Sidebar = ({ onDataFetched, openUploadModal }) => {
   const fetchHost = async () => {
     console.log("In fetchhost function");
     try {
-      var response = await fetch(`${BASE_URL}/scan`);
+      var response = await fetch(`${BASE_URL}/api/scan`);
       response = await response.json();
       console.log(response);
       setHostData(response);

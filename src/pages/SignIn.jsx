@@ -29,8 +29,8 @@ const SignIn = () => {
   }
 
   const handleSigninSubmit = () => {
-    const endpoint = action === 'Sign In' ? '/authenticate' : '/create-user';
-  
+    const endpoint = action === 'Sign In' ? `/api/user/signin`  : `/api/user/create-user`;
+    console.log(endpoint)
     fetch(`${BASE_URL}${endpoint}`, {
       method: 'post',
       headers: {
@@ -46,8 +46,8 @@ const SignIn = () => {
         }
       })
       .then((data) => {
-        console.log(data.message);
-
+        localStorage.setItem('user',data._id)
+        localStorage.setItem('token', data.token)
         toast.success("Authentication successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -103,7 +103,9 @@ const SignIn = () => {
             Submit
           </button>
         </div>
-
+        <div>
+          
+        </div>
 
       </div><div className="signin-submit-container">
         <div
