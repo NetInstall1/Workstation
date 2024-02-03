@@ -1,23 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { Form, Button, Modal, Container } from 'react-bootstrap'
+import axios from 'axios';
+import { BASE_URL } from '../config';
 
 
-
-const UploadModal = (props) => {
+const UploadModal = ({ show, onHide, onFileUploaded }) => {
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [softwareName, setsoftwareName] = useState("")
     const [silentInstallationCommand, setSilentInstallationCommand] = useState("")
-
+    
     const handleFileChange = (e) => {
-        const file = e.target.files[0]
-        const fileReader = new FileReader()
-        fileReader.readAsDataURL(file)
-        fileReader.onloadend=()=>{
-            console.log(`file reader result${fileReader.result}`)
-            setSelectedFile(fileReader.result)
-        }
+        setSelectedFile(e.target.files[0]);
     };
 
     const handleSoftwareNameChange = (event) => {
@@ -29,20 +24,43 @@ const UploadModal = (props) => {
     }
 
     const handleUpload = () => {
-        // Add code here to handle the file upload or silent installation
-        console.log("Selected file:", selectedFile);
-        // Replace the following command with your actual command for silent installation
-        // const silentInstallationCommand = "your-silent-installation-command";
+        if (!selectedFile || !softwareName || !silentInstallationCommand) {
+            alert('Please fill in all fields and select a file.');
+            console.log("Selected file:", selectedFile);
         console.log("Silent Installation Command:", silentInstallationCommand);
+        
+            return;
+        }
+        const formData = new FormData();
+    formData.append('file', selectedFile);
+    formData.append('softwareName', softwareName);
+    formData.append('silentInstallationCommand', silentInstallationCommand);
+
+    axios.post(`${BASE_URL}/upload`, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+    .then(response => {
+        console.log(response.data);
+        alert('File uploaded successfully');
+        onFileUploaded(response.data.fileId);
+    })
+    .catch(error => {
+        // Handle any errors here
+        console.error('Upload failed', error);
+        alert('Upload failed');
+    });
 
         
     };
     return (
         <Modal
-            {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            show={show} // This should be passed down as a prop to control visibility
+            onHide={onHide} 
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -80,7 +98,7 @@ const UploadModal = (props) => {
                 </Container>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
+                <Button onClick={onHide} >Close</Button>
             </Modal.Footer>
         </Modal>
     );

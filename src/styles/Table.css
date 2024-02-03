@@ -1,8 +1,23 @@
 /* Table.css */
 .table-container {
-    margin-top: 40px; /* Adjust the top margin as needed */
+    margin-top: 30px; /* Adjust the top margin as needed */
   }
+
+.dboard{
+  margin-top: 30px !important;
+}
+
+.dbno{
+  margin-right: 550px !important;
+}
+.headingrow{
+  width: 130% !important;
+}
   
+.columnsx{
+  padding-right: 30px !important;
+  padding-left: 10px !important;
+}
   .visible-column {
     margin-left: 10px; /* Left margin of 20px */
     margin-right: 10px;/* Adjust the right margin as needed */
@@ -12,7 +27,7 @@
   .table-filter {
     width: 40%; 
     margin-left: 0px;
-    margin-top: 40px; /* Set the width to 60% of its container */
+    margin-top: 0px; /* Set the width to 60% of its container */
   }
 
   .table-container {
@@ -21,40 +36,65 @@
   }
 
   .gray-bg {
-    background-color: #4a4444; /* Grey color */
-    color: #c1b3b3; /* Text color, adjust as needed */
+    background-color: #e9ecef; /* Grey color */
+    color: #495057; 
   }
 
   .btn-filtered {
-    margin-left: 70px; /* Adjust the value as needed */
+    margin-left: 70px; 
+    color: #007bff; /* Bootstrap primary color for consistency */
+  border-color: #007bff; 
   }
 
   .table th {
     font-size: 20px; /* You can adjust the font size as needed */
+    font-family: 'Nunito Sans', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Modern sans-serif font */
+  background-color: #f8f9fa; /* Light background for headers for subtle contrast */
+  color: #212529;
   }
   
   h2 {
-    color: #01040c;
-    text-align: left;
-    transition: color 0.3s; /* Add a smooth color transition on hover */
-  }
+      color: #007bff;
+      text-align: left;
+      transition: color 0.3s;   
+    }
   
   h2:hover {
-    color: rgb(37, 186, 227); /* Change the color on hover */
+    color: rgb(37, 186, 227); 
   }
   
   .header-with-icon {
     display: flex;
     align-items: center;
+    font-size: 18px !important;
   }
   
   .icon {
-    margin-right: 5px; /* Add some spacing between the icon and text */
-    font-size: 18px; /* Adjust the font size of the icon */
+    margin-right: 5px; 
+    font-size: 18px; 
   }
   
   .table th:hover {
-  color: rgb(37, 186, 227);/* Change the background color on hover */
-  cursor: pointer; 
+    background-color: #dfe3e8; 
+    color: #0056b3;
 }
 
+.table tbody tr {
+  transition: background-color 0.15s ease-in-out;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa; 
+}
+
+/* Style for table data cells */
+
+.table td {
+  color: #212529; 
+  font-family: 'Nunito Sans', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+}
+
+
+.header-with-icon .icon {
+  vertical-align: middle;
+}

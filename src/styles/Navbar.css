@@ -1,11 +1,53 @@
+/* Updated Navbar.css */
+.navbar {
+  height: 65px; /* Adjusted for better proportion */
+  background-color: #f8f9fa; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  width: 90%; 
+  margin-left: 0; 
+  padding-left: 0; 
+  align-items: center; 
+}
+
+
+.navbar-container {
+  width: 110%;
+  margin-left: 0px;
+}
+.container-fluid {
+  padding-right: 0; 
+  padding-left: 0; 
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%; /* Set width to full */
+}
+
+.navbar-brand img {
+  height: 50px; /* Adjust the logo size */
+  margin-right: 10px; /* Space between logo and other nav items */
+}
 
 .nav-link {
-  font-size: 21px;
-  padding: 0.3rem 20rem; 
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-align: inherit; /* Change the font size to your preferred size (e.g., 18px) */
-}
-.nav-link:hover {
-  color: rgb(37, 186, 227); /* Change the color to your preferred blue color */
+  font-size: 18px; /* Adjusted for readability */
+  padding: 0.5rem 1rem; /* Balanced padding */
+  font-family: 'Segoe UI', 'Arial Narrow', Arial, sans-serif;
+  color: #333; /* Darker color for better visibility */
 }
 
+.nav-link:hover, .nav-link:focus {
+  color: #1a73e8; /* Vibrant hover color */
+  text-decoration: none !important; /* No underline on hover */
+}
+
+.fa {
+  margin-right: 5px; /* Space between icon and text */
+}
+
+@media (max-width: 992px) {
+  .navbar {
+    padding: 0.5rem 1rem; /* Adjust for smaller screens */
+  }
+  .navbar-brand img {
+    height: 45px; /* Slightly smaller logo on small screens */
+  }
+}

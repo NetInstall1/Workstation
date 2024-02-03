@@ -6,60 +6,72 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-// import user_icon from 'login-signup/src/components/assestss/email.png'
-// import email_icon from 'login-signup/src/components/assestss/email.png' 
-// import password_icon from 'login-signup/src/components/assestss/email.png'
-
 const SignIn = () => {
   const navigate = useNavigate();
 
   const [action, setAction] = useState("Sign In");
   const [user_email, setUserEmail] = useState('')
   const [user_pass, setUserPass] = useState('')
+  const [user_name, setUserName] = useState('');
 
-  const handleEmail = (e) => {
-    console.log(`Email: ${e.target.value}`)
+  const handleUsername = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handleEmail = (e) => {  
     setUserEmail(e.target.value)
   }
 
   const handlePass = (e) => {
-    console.log(`Pass: ${e.target.value}`)
     setUserPass(e.target.value)
   }
 
   const handleSigninSubmit = () => {
-    const endpoint = action === 'Sign In' ? `/api/user/signin`  : `/api/user/create-user`;
-    console.log(endpoint)
+    // Check if either the email or password is empty
+  if (!user_email.trim() || !user_pass.trim()) {
+    toast.error("Email and Password cannot be empty.", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+    return; // Exit the function if validation fails
+  }
+  let userData = action === 'Sign Up' 
+  ? { user_email: user_email, user_pass: user_pass, user_name: user_name } 
+  : { user_email: user_email, user_pass: user_pass };
+
+  
+    const endpoint = action === 'Sign In' ? '/authenticate' : '/create-user';
+  
     fetch(`${BASE_URL}${endpoint}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user_email: user_email, user_pass: user_pass }),
+      body: JSON.stringify(userData),
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
+        if (!res.ok) {
+          if (res.status === 401) {
+            // Token is expired or invalid
+            toast.error("Session expired. Please sign in again.", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+            navigate('/');
+          }
           throw new Error('Authentication failed');
         }
+        return res.json();
       })
       .then((data) => {
-        localStorage.setItem('user',data._id)
-        localStorage.setItem('token', data.token)
+        console.log(data.message);
         toast.success("Authentication successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
-
+        // Store the token in local storage or state
+        localStorage.setItem('token', data.token); // Assuming the token is in data.token
         navigate("/dashboard");
-  
       })
       .catch((err) => {
         console.log(err);
-  
-        // Show an error toast notification
-        
         toast.error("Authentication failed. Please try again.", {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -76,10 +88,21 @@ const SignIn = () => {
           <div className="signin-underline"></div>
         </div>
 
+        {action === "Sign Up" && (
+        <div className="signin-input">
+          <input
+            placeholder="Username"
+            type="text"
+            value={user_name}
+            onChange={handleUsername}
+          />
+        </div>
+        )}
+
         <div className="signin-input">
           {/* <img src={email_icon} alt="" />  */}
           <input
-            placeholder="Email Id"
+            placeholder="Email Id"  
             type="email"
             onChange={handleEmail}
           />

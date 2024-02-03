@@ -1,33 +1,63 @@
 /* Sidebar.css */
 #sidebar {
-  min-width: 150px;
-  max-width: 150px;
+  min-width: 212px;
+  max-width: 212px;
+  top: 65px;
   height: 100%;
   position: fixed;
-  top: 60px; /* Adjust this value to match the height of your navbar */
+  top: 0px; 
   left: 0;
   overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%); /* Start hidden */
+  background: #ffffff;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+.hamburger-menu {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  cursor: pointer;
+  z-index: 1200;
+  font-size: 30px;
+  color: #333; /* Or any color that matches your design */
+}
+
+#sidebar.open {
+  transform: translateX(0); /* Slide in */
 }
 
 .sidebar-option {
-  font-size: 19px;
+  font-size: 18px;
+  padding: 7px 10px;
   margin-top: 28px;
   cursor: pointer;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Segoe UI', 'Arial', sans-serif; 
   text-align: inherit;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  transition: background-color 0.3s;
 }
 
 .sidebar-option:hover {
   text-decoration: underline;
+  background-color: #f8f8f8;
   color: rgb(37, 186, 227);
+}
+
+.sidecss{
+  padding-top: 30px;
+  margin-left: 10px;
 }
 
 
 .sidebar-option a {
-  color: black; /* Set the link text color to black */
-  text-decoration: none; /* Remove the underline on the link (optional) */
+  display: block; /* Make the link fill the li for a larger click area */
+  text-decoration: none; /* No underline */
+  color: inherit; /* Inherit color from li */
 }
 
 .sidebar-option a:hover {
   color: rgb(37, 186, 227);/* Set the link color to blue when hovered */
   }
+
