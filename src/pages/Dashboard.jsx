@@ -12,6 +12,7 @@ import { BASE_URL } from '../config';
 function Dashboard() {
     const [isUploadModalOpen, setUploadModal] = useState(false)
     const [hostData, setHostData] = useState([])
+    const [uploadedFileId, setUploadedFileId] = useState(null);
     
     //navigation to login upon token expiry
     const navigate = useNavigate();
@@ -46,19 +47,11 @@ function Dashboard() {
     }, [navigate]);
 
     //Upload Modal functions
-    const [selectedFile, setSelectedFile] = useState(null);
-
-    const handleFileChange = (e) => {
-        setSelectedFile(e.target.files[0]);
+    
+    const handleFileUploaded = (fileId) => {
+        setUploadedFileId(fileId);
     };
 
-    const handleUpload = () => {
-        // Add code here to handle the file upload or silent installation
-        console.log("Selected file:", selectedFile);
-        // Replace the following command with your actual command for silent installation
-        const silentInstallationCommand = "your-silent-installation-command";
-        console.log("Silent Installation Command:", silentInstallationCommand);
-    };
     const openUploadModal = () => {
         setUploadModal(true)
     }
@@ -93,10 +86,10 @@ function Dashboard() {
             <Navbar onLogout={handleLogout}/>
             </div>
             
-            <Sidebar onDataFetched={handleDataFetched} hostData={hostData} openUploadModal={openUploadModal} />
+            <Sidebar onDataFetched={handleDataFetched} hostData={hostData} openUploadModal={openUploadModal} uploadedFileId={uploadedFileId} />
             
             <div className="main-content">
-            <UploadModal show={isUploadModalOpen} onHide={closeUploadModal} />
+            <UploadModal show={isUploadModalOpen} onHide={closeUploadModal} onFileUploaded={handleFileUploaded} />
             <Table data={hostData} />
              </div> 
             {/* <UploadFile isOpen={isUploadModalOpen} onclose={closeUploadModal}/> */}

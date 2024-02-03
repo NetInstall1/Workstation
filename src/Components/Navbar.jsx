@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import '../styles/Navbar.css';
 import 'font-awesome/css/font-awesome.min.css';
+import { BASE_URL } from '../config';
 
 const AppNavbar = () => {
   // State to control the visibility of the profile dropdown
@@ -17,6 +18,19 @@ const AppNavbar = () => {
   const toggleProfileDropdown = () => {
     setShowProfileDropdown(!showProfileDropdown);
   };
+
+  const handleDisconnect = async () => {
+    try {
+        await fetch(`${BASE_URL}/agent-disconnect`, { method: 'POST' });
+        console.log("Disconnect signal sent");
+    } catch (error) {
+        console.error("Error sending disconnect signal:", error);
+    }
+};
+
+  const handleHomeClick = () => {
+    navigate('/dashboard');
+};
   
   const handleLogout = () => {
     // Clear the token from local storage
@@ -39,7 +53,9 @@ const AppNavbar = () => {
         </Navbar.Brand>
         <Nav className="ml-auto">
         <Nav.Link className="nav-link">
-     <i className="fa fa-comments"></i> Chat
+        <Link to="/dashboard" className="" style={{ textDecoration: 'none' }}>
+                    <i className="fa fa-home"></i> Home
+        </Link>
        </Nav.Link>
            <Nav.Link className="nav-link" onClick={toggleProfileDropdown}>
            <i className="fa fa-user"></i> Profile
@@ -58,8 +74,8 @@ const AppNavbar = () => {
     </NavDropdown.Item>
   </NavDropdown>
   )}
-  <Nav.Link className="nav-link">
-  <i className="fa fa-sign-out"></i> Disconnect
+  <Nav.Link className="nav-link" onClick={handleDisconnect}>
+    <i className="fa fa-sign-out"></i> Disconnect
 </Nav.Link>
   </Nav>
     </Container>

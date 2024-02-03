@@ -87,7 +87,6 @@ const TaskManager = () => {
   </tr>
 ))}
 
-
         </tbody>
       </table>
     </div>

@@ -12,14 +12,17 @@ const SignIn = () => {
   const [action, setAction] = useState("Sign In");
   const [user_email, setUserEmail] = useState('')
   const [user_pass, setUserPass] = useState('')
+  const [user_name, setUserName] = useState('');
 
-  const handleEmail = (e) => {
-    console.log(`Email: ${e.target.value}`)
+  const handleUsername = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handleEmail = (e) => {  
     setUserEmail(e.target.value)
   }
 
   const handlePass = (e) => {
-    console.log(`Pass: ${e.target.value}`)
     setUserPass(e.target.value)
   }
 
@@ -31,6 +34,11 @@ const SignIn = () => {
     });
     return; // Exit the function if validation fails
   }
+  let userData = action === 'Sign Up' 
+  ? { user_email: user_email, user_pass: user_pass, user_name: user_name } 
+  : { user_email: user_email, user_pass: user_pass };
+
+  
     const endpoint = action === 'Sign In' ? '/authenticate' : '/create-user';
   
     fetch(`${BASE_URL}${endpoint}`, {
@@ -38,7 +46,7 @@ const SignIn = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user_email: user_email, user_pass: user_pass }),
+      body: JSON.stringify(userData),
     })
       .then((res) => {
         if (!res.ok) {
@@ -80,10 +88,21 @@ const SignIn = () => {
           <div className="signin-underline"></div>
         </div>
 
+        {action === "Sign Up" && (
+        <div className="signin-input">
+          <input
+            placeholder="Username"
+            type="text"
+            value={user_name}
+            onChange={handleUsername}
+          />
+        </div>
+        )}
+
         <div className="signin-input">
           {/* <img src={email_icon} alt="" />  */}
           <input
-            placeholder="Email Id"
+            placeholder="Email Id"  
             type="email"
             onChange={handleEmail}
           />

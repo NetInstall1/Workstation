@@ -40,7 +40,7 @@ const Table = ({ hostData }) => {
             <div className="row dboard">
                 <div className="col-md-11">
                     <h2 className="tablex">Workstations & Servers</h2>
-                    <h4 style={{ color: 'grey', display: 'inline-block', marginLeft: '0px' }}>Total <b>{filteredData.length}</b></h4>
+                    <h4 className=" dbno" style={{ color: 'grey', display: 'inline-block' }}>Total <b>{filteredData.length}</b></h4>
                     <div className="table-filter mt-4">
                         <input
                             type="text"

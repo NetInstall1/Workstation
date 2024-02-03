@@ -36,7 +36,7 @@
 
 .nav-link:hover, .nav-link:focus {
   color: #1a73e8; /* Vibrant hover color */
-  text-decoration: none; /* No underline on hover */
+  text-decoration: none !important; /* No underline on hover */
 }
 
 .fa {

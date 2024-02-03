@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from '../Components/Navbar';
 import '../styles/GuestDashboard.css'; 
 import { BASE_URL } from '../config';
-import Sidebar from '../Components/Sidebar';
+import GuestSidebar from '../Components/GuestSidebar';
 
 const GuestDashboard = () => {
     const [guestInfo, setGuestInfo] = useState(null);
@@ -69,7 +69,7 @@ const GuestDashboard = () => {
        <div className="navbar-container xd">
             <Navbar onLogout={handleLogout}/>
         </div>
-    <Sidebar />
+    <GuestSidebar />
 
     <div className="guest-info-container">
         {guestInfo && guestInfo.details && (
