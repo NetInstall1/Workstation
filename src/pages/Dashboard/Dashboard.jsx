@@ -18,7 +18,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import io from 'socket.io-client';
 
-const socket = io(BASE_URL)
+// const socket = io(BASE_URL)
 
 
 function Dashboard() {
@@ -28,6 +28,7 @@ function Dashboard() {
     const [loading, setLoading] = useState(false)
     const [user, setUser] = useState({})
     const [agent, setAgent] = useState([])
+    const [uploadedFileId, setUploadedFileId] = useState(null);
 
     //Upload Modal functions
     const [selectedFile, setSelectedFile] = useState(null);
@@ -37,6 +38,9 @@ function Dashboard() {
     };
 
 
+    const handleFileUploaded = (fileId) => {
+        setUploadedFileId(fileId);
+    };
 
     const handleUpload = () => {
         // Add code here to handle the file upload or silent installation
@@ -63,7 +67,7 @@ function Dashboard() {
     const fetchAgent = async () => {
         try {
             const token = localStorage.getItem('token')
-            var res = await fetch(`${BASE_URL}/api/agent/get-my-agents`,
+            var res = await fetch(`${BASE_URL}/api/get-my-agents`,
                 {
                     method: "get",
                     headers: {
@@ -75,9 +79,9 @@ function Dashboard() {
                 const errorResponse = res.json()
                 throw new Error(errorResponse)
             }
-            res = res.json()
-            setAgent(res)
-            console.log(res) 
+            res = await res.json()
+            console.log(res['agents'])
+            setAgent(res['agents'])
         } catch (err) {
             
         }
@@ -106,17 +110,23 @@ function Dashboard() {
             })
 
 
-        socket.emit('user-login',(data)=>{
-            console.log(data)
-        })
+        // socket.emit('user-login',(data)=>{
+        //     console.log(data)
+        // })
     }, [user])
     return (
         <div className="Dashboard">
             <Navbar />
-            <Sidebar onDataFetched={handleDataFetched} hostData={hostData} openUploadModal={openUploadModal} />
+            <Sidebar 
+                onDataFetched={handleDataFetched} 
+                hostData={hostData} 
+                openUploadModal={openUploadModal} 
+                uploadedFileId={uploadedFileId}
+            />
             <UploadModal
                 show={isUploadModalOpen}
                 onHide={closeUploadModal}
+                onFileUploaded={handleFileUploaded}
             />
             {/* <UploadFile isOpen={isUploadModalOpen} onclose={closeUploadModal}/> */}
             <Table data={hostData} agentList={agent}/>

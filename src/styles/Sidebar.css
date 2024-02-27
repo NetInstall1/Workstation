@@ -2,6 +2,7 @@
 #sidebar {
   min-width: 212px;
   max-width: 212px;
+  margin-top: 60px;
   top: 65px;
   height: 100%;
   position: fixed;
@@ -60,4 +61,3 @@
 .sidebar-option a:hover {
   color: rgb(37, 186, 227);/* Set the link color to blue when hovered */
   }
-

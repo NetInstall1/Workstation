@@ -3,11 +3,14 @@ import { BASE_URL } from '../config';
 import '../styles/Table.css';
 import { useNavigate } from 'react-router';
 
-const Table = ({ hostData }) => {
-    const navigate = useNavigate();
-    const [filter, setFilter] = useState(''); // State to store the filter text
-    const [tableData, setTableData] = useState([]);
 
+const Table = ({ hostData, agentList }) => {
+    const navigate = useNavigate();
+    const [filter, setFilter] = useState(''); 
+    const [tableData, setTableData] = useState([]);
+    const [selectedAgent, setSelectedAgent] = useState()
+    console.log("host Data")
+    console.log(agentList)
     useEffect(() => {
         // Fetch guest information when the component mounts
         const fetchHostInfo = async () => {
@@ -35,6 +38,13 @@ const Table = ({ hostData }) => {
         )
     );
 
+    const handleSelectedAgent = (agent)=>{
+        setSelectedAgent(agent)
+    }
+    const handleFilterOption = (option) => {
+        console.log("Selected option:", option);
+    };
+    
     return (
         <div className="container">
             <div className="row dboard">
@@ -50,6 +60,22 @@ const Table = ({ hostData }) => {
                             onChange={(e) => setFilter(e.target.value)}
                         />
                     </div>
+
+                    {
+                        agentList.map((item, index) => {
+
+                            return (<div className="row">
+                                <div className="col">
+                                    <button className="btn btn-primary"
+                                    onClick={() => handleSelectedAgent(item)}
+                                    >
+                                        {item.agent_name}
+                                    </button>
+                                </div>
+                            </div>)
+                        })
+                    }
+
                     <div className="table-container">
                         <table className="table mx-auto my-3 headingrow">
                             <thead>
@@ -63,7 +89,7 @@ const Table = ({ hostData }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredData.map((item, index) => (
+                                {selectedAgent && selectedAgent['guests'].map((item, index) => (
                                     <tr key={index} onClick={() => handleRowClick(item.ip_address)}>
                                         <td className="visible-column">{item.hostname}</td>
                                         <td>{item.ip_address}</td>

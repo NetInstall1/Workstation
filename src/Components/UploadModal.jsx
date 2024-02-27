@@ -36,9 +36,11 @@ const UploadModal = ({ show, onHide, onFileUploaded }) => {
     formData.append('softwareName', softwareName);
     formData.append('silentInstallationCommand', silentInstallationCommand);
 
-    axios.post(`${BASE_URL}/upload`, formData, {
+    axios.post(`${BASE_URL}/api/upload`, formData, {
         headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
+
         }
     })
     .then(response => {

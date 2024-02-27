@@ -33,7 +33,7 @@ const Sidebar = ({ onDataFetched, openUploadModal, uploadedFileId }) => {
         const response = await fetch(`${BASE_URL}/guest-ip-addresses`);
         const ipAddresses = await response.json();
 
-        const deployResponse = await fetch(`${BASE_URL}/deploy`, {
+        const deployResponse = await fetch(`${BASE_URL}/api/deploy`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ip_addresses: ipAddresses })

@@ -14,7 +14,7 @@ const DeployModal = ({ show, onHide, fileId }) => {
         if (show) { // Only make API calls when the modal is open
             setIsLoading(true);
             // Fetch guests
-            axios.get(`${BASE_URL}/guestInfo`)
+            axios.get(`${BASE_URL}/api/guestInfo`)
                 .then(response => {
                     const successfulLogins = response.data.filter(guest => guest.action === 'Login Success');
                     setGuests(successfulLogins);
@@ -26,7 +26,11 @@ const DeployModal = ({ show, onHide, fileId }) => {
                 });
 
             // Fetch uploaded files
-            axios.get(`${BASE_URL}/uploaded-files`) // Adjust the endpoint as needed
+            axios.get(`${BASE_URL}/api/uploaded-files`, {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                }
+            }) // Adjust the endpoint as needed
                 .then(response => {
                     setUploadedFiles(response.data);
                 })
@@ -47,7 +51,7 @@ const DeployModal = ({ show, onHide, fileId }) => {
     };
 
     const handleDeploy = () => {
-        axios.post(`${BASE_URL}/deploy`, {
+        axios.post(`${BASE_URL}/api/deploy`, {
             fileIdentifier: selectedFile,
             ipAddresses: selectedGuests
         })
