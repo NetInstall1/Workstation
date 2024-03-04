@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Form, Button, Modal, Container } from 'react-bootstrap'
 import axios from 'axios';
 import { BASE_URL } from '../config';
+import { toBeChecked } from "@testing-library/jest-dom/matchers";
 
 
 const UploadModal = ({ show, onHide, onFileUploaded }) => {
@@ -36,10 +37,12 @@ const UploadModal = ({ show, onHide, onFileUploaded }) => {
     formData.append('softwareName', softwareName);
     formData.append('silentInstallationCommand', silentInstallationCommand);
 
+    const token = localStorage.getItem('token')
+    console.log(token)
     axios.post(`${BASE_URL}/api/upload`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
-            "Authorization": `Bearer ${localStorage.getItem('token')}`
+            "Authorization": `Bearer ${token}`
 
         }
     })

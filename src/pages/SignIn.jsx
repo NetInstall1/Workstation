@@ -46,9 +46,7 @@ const SignIn = () => {
         if (!res.ok) {
           if (res.status === 401) {
             // Token is expired or invalid
-            toast.error("Session expired. Please sign in again.", {
-              position: toast.POSITION.TOP_RIGHT,
-            });
+            // toast.error("Session expired. Please sign in again.");
             navigate('/');
           }
           throw new Error('Authentication failed');
@@ -66,9 +64,7 @@ const SignIn = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Authentication failed. Please try again.", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
+        toast.error("Authentication failed. Please try again.");
       });
   };
   

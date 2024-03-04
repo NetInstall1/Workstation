@@ -36,7 +36,7 @@ const GuestDashboard = ({guestData}) => {
             })
             .catch(err => {
                 console.error(err);
-                navigate('/');
+                // navigate('/');
             });
         }
     }, [navigate]);
@@ -55,7 +55,7 @@ const GuestDashboard = ({guestData}) => {
       };
 
     useEffect(() => {
-        fetch(`${BASE_URL}/guestInfo/${guestIp}`)
+        fetch(`${BASE_URL}/api/guestInfo/${guestIp}`)
             .then(response => response.json())
             .then(data => {
                 setGuestInfo(data);

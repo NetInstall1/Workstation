@@ -1,83 +1,83 @@
-/* TaskManager.css */
-
-.task-manager {
-  text-align: center;
-  margin: 20px auto;
-  width: 82%;
+.task-manager-page {
+  font-family: 'Arial', sans-serif;
+  margin-top: 5400px; 
+  padding: 1rem;
+  width: 115%;
 }
 
-h2 {
-  font-size: 27px;
-  margin-bottom: 20px;
-}
-
-.performance-predictor {
-  display: flex;
-  justify-content: space-between;
+.process-list {
   margin-top: 50px;
+
 }
 
-.performance-prediction {
-  flex: 1;
-  background-color: #f2f2f2;
-  padding: 10px;
-  border: 1px solid #ccc;
-  text-align: center;
+.tm{
+  width: 110% !important;
 }
 
-/* Add padding between RAM and CPU usage boxes */
-.performance-prediction + .performance-prediction {
-  margin-left: 20px;
+.tablek {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100% !important;
 }
 
-.progress-bar {
-  background-color: #e0e0e0;
-  height: 20px;
-  border: 1px solid #ccc;
-}
 
-.usage {
-  background-color: #3498db;
-  height: 100%;
-  color: white;
-  text-align: center;
-  line-height: 20px;
-  font-size: 17px;
-}
-
-.process-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.process-table th, .process-table td {
-  border: none; /* Remove border from the table */
-  padding: 8px;
-}
-
-.process-table th {
-  background-color: #f2f2f2;
-}
-
-.process-icon {
-  width: 20px; /* Adjust the width as per your preference */
-  height: 20px; /* Adjust the height as per your preference */
-}
-.process-table {
-  text-align: center;
-}
-
-.process-cell {
+h2{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px; /* Adjust the gap as needed to control the spacing between the icon and name */
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
-.process-name {
-  font-weight: inherit;
+.tablek thead th {
+  background-color: #f5f5f5;
+}
+
+.tablek tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+.tablek td, .tablek th {
+  padding: 0.75rem; /* Increase padding for spacing */
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
 }
 
 
-/* Add additional styling as needed */
+.progress {
+  border-radius: 0.25rem;
+}
+
+.memory-usage-bar {
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.memory-usage-low {
+  background-color: #28a745; /* Green for low usage */
+}
+
+.memory-usage-medium {
+  background-color: #ffc107; /* Yellow for medium usage */
+}
+
+.memory-usage-high {
+  background-color: #dc3545; /* Red for high usage */
+}
+
+.memory-usage-critical {
+  background-color: #f44336; /* Red for critical usage */
+}
+
+.memory-usage-medium, .memory-usage-high {
+  color: black;
+}
+
+.memory-usage {
+  color: white;
+  text-align: right;
+  padding-right: 5px;
+  line-height: 20px;
+}
+
+

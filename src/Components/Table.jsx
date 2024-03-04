@@ -90,7 +90,7 @@ const Table = ({ hostData, agentList }) => {
                             </thead>
                             <tbody>
                                 {selectedAgent && selectedAgent['guests'].map((item, index) => (
-                                    <tr key={index} onClick={() => handleRowClick(item.ip_address)}>
+                                    <tr key={index} onClick={() => handleRowClick(item._id)}>
                                         <td className="visible-column">{item.hostname}</td>
                                         <td>{item.ip_address}</td>
                                         <td>{item.mac_address}</td>
